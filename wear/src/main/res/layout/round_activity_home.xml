@@ -12,12 +12,13 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="188dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.84"
             android:textAlignment="center"
             android:weightSum="1"
-            android:paddingTop="20dp">
+            android:paddingTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.16">
 
             <TextView
                 android:id="@+id/sgv"
@@ -41,15 +42,15 @@
 
         <TextView
             android:id="@+id/watch_time"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:text="8:20pm"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textColor="#FF0000"
+            android:textColor="#ff6599ff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal|top" />
 
         <TextView
             android:id="@+id/watch_battery"
@@ -57,7 +58,7 @@
             android:text="76%"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF0000"
+            android:textColor="#ff6599ff"
             android:layout_alignRight="@id/watch_time"
             android:layout_below="@+id/watch_time"
             android:textAlignment="center"
