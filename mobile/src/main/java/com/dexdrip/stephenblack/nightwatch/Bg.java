@@ -50,9 +50,9 @@ public class Bg extends Model {
 
     public String sgv_string() {
         int asInt = sgv_int();
-        if (asInt >= 500) {
+        if (asInt > 400) {
             return "High";
-        } else if (asInt <= 40) {
+        } else if (asInt < 40) {
             return "Low";
         } else {
             return sgv;
