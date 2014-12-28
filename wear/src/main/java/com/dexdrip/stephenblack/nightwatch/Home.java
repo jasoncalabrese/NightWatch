@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
@@ -18,8 +19,9 @@ import java.util.Calendar;
 
 public class Home extends Activity {
     private final static IntentFilter INTENT_FILTER;
+    private static final int BRIGHT_GREEN = Color.parseColor("#4cff00");
     private TextView mTime, mBattery, mSgv, mBgDelta, mTrend, mDirection, mTimestamp, mUploaderBattery;
-    private final String TIME_FORMAT_DISPLAYED = "hh:mm a";
+    private final String TIME_FORMAT_DISPLAYED = "hh:mm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,22 @@ public class Home extends Activity {
             DataMap dataMap = DataMap.fromBundle(intent.getBundleExtra("data"));
 
             mSgv.setText(dataMap.getString("sgvString"));
+
+            int sgv = Integer.parseInt(dataMap.getString("sgv"));
+
+            //TODO: get thresholds from somewhere
+
+            if (sgv > 180) {
+                mSgv.setTextColor(Color.YELLOW);
+                mDirection.setTextColor(Color.YELLOW);
+            } else if (sgv < 80) {
+                mSgv.setTextColor(Color.RED);
+                mDirection.setTextColor(Color.RED);
+            } else {
+                mSgv.setTextColor(BRIGHT_GREEN);
+                mDirection.setTextColor(BRIGHT_GREEN);
+            }
+
 //            mBgDelta.setText(String.valueOf(dataMap.getDouble("bgdelta")));
 //            mTrend.setText(dataMap.getString("trend"));
             mDirection.setText(dataMap.getString("slopeArrow"));
