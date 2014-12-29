@@ -16,24 +16,25 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:weightSum="1"
-            android:paddingTop="20dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.16">
+            android:paddingTop="5dp"
+            android:layout_gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/sgv"
                 android:textSize="45sp"
                 android:text="123"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:paddingLeft="30dp"
+                android:paddingLeft="35dp"
                 android:textColor="#FF0000"
                 android:layout_weight="0.20" />
 
             <TextView
                 android:id="@+id/direction"
-                android:textSize="50sp"
+                android:textSize="45sp"
                 android:text="\u2192"
+                android:textStyle="bold"
                 android:layout_width="31dp"
                 android:layout_height="50dp"
                 android:textColor="#FF0000"
@@ -41,9 +42,21 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/bg_delta"
+            android:textSize="15sp"
+            android:text="+12 mg/dl"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="#FF0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal|top" />
+
+        <TextView
             android:id="@+id/watch_time"
-            android:textSize="35sp"
-            android:text="8:20pm"
+            android:textSize="40sp"
+            android:text="12:55"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textColor="#ff6599ff"
@@ -52,17 +65,76 @@
             android:textAlignment="center"
             android:layout_gravity="center_horizontal|top" />
 
-        <TextView
-            android:id="@+id/watch_battery"
-            android:textSize="13sp"
-            android:text="76%"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#ff6599ff"
-            android:layout_alignRight="@id/watch_time"
-            android:layout_below="@+id/watch_time"
             android:textAlignment="center"
-            android:layout_gravity="center_horizontal" />
+            android:weightSum="1"
+            android:paddingTop="0dp"
+            android:gravity="fill_horizontal|center_horizontal">
+
+            <TextView
+                android:id="@+id/read_ago"
+                android:textSize="13sp"
+                android:text="4 min ago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"
+                android:paddingLeft="20sp"/>
+
+            <TextView
+                android:id="@+id/uploader_battery_label"
+                android:textSize="13sp"
+                android:text="U: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"
+                android:paddingLeft="10sp" />
+
+            <TextView
+                android:id="@+id/uploader_battery"
+                android:textSize="13sp"
+                android:text="82%"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"/>
+
+            <TextView
+                android:id="@+id/watch_battery_label"
+                android:textSize="13sp"
+                android:text="W: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"
+                android:paddingLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/watch_battery"
+                android:textSize="13sp"
+                android:text="76%"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"/>
+
+            <TextView
+                android:id="@+id/iob_label"
+                android:textSize="13sp"
+                android:text="IOB: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"
+                android:paddingLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/iob"
+                android:textSize="13sp"
+                android:text="0.35U"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff6599ff"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

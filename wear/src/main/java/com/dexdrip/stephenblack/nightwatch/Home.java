@@ -20,8 +20,8 @@ import java.util.Calendar;
 public class Home extends Activity {
     private final static IntentFilter INTENT_FILTER;
     private static final int BRIGHT_GREEN = Color.parseColor("#4cff00");
-    private TextView mTime, mBattery, mSgv, mBgDelta, mTrend, mDirection, mTimestamp, mUploaderBattery;
-    private final String TIME_FORMAT_DISPLAYED = "hh:mm";
+    private TextView mTime, mBattery, mSgv, mBgDelta, mTrend, mDirection, mTimestamp, mUploaderBattery, mIOB;
+    private final String TIME_FORMAT_DISPLAYED = "h:mm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,23 @@ public class Home extends Activity {
                 mTime = (TextView) stub.findViewById(R.id.watch_time);
                 mBattery = (TextView) stub.findViewById(R.id.watch_battery);
                 mSgv = (TextView) stub.findViewById(R.id.sgv);
+                mSgv.setText("--");
+                mBgDelta = (TextView) stub.findViewById(R.id.bg_delta);
+                mBgDelta.setText("--");
                 mDirection = (TextView) stub.findViewById(R.id.direction);
+                mDirection.setText("-");
+                mUploaderBattery = (TextView) stub.findViewById(R.id.uploader_battery);
+                mUploaderBattery.setText("-");
+                mTimestamp = (TextView) stub.findViewById(R.id.read_ago);
+                mTimestamp.setText("? mins ago");
+                mIOB = (TextView) stub.findViewById(R.id.iob);
+                mIOB.setText("--");
                 mTimeInfoReceiver.onReceive(Home.this, registerReceiver(null, INTENT_FILTER));
                 registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
                 registerReceiver(mTimeInfoReceiver, INTENT_FILTER);
             }
         });
+
     }
 
     @Override
@@ -90,19 +101,30 @@ public class Home extends Activity {
             if (sgv > 180) {
                 mSgv.setTextColor(Color.YELLOW);
                 mDirection.setTextColor(Color.YELLOW);
+                mBgDelta.setTextColor(Color.YELLOW);
             } else if (sgv < 80) {
                 mSgv.setTextColor(Color.RED);
                 mDirection.setTextColor(Color.RED);
+                mBgDelta.setTextColor(Color.RED);
             } else {
                 mSgv.setTextColor(BRIGHT_GREEN);
                 mDirection.setTextColor(BRIGHT_GREEN);
+                mBgDelta.setTextColor(BRIGHT_GREEN);
             }
 
-//            mBgDelta.setText(String.valueOf(dataMap.getDouble("bgdelta")));
+            double bgDelta = dataMap.getDouble("bgdelta");
+            String bgDeltaDisplay = "";
+            if (bgDelta >= 0) bgDeltaDisplay = "+";
+            //TODO: mmol support
+            bgDeltaDisplay += ((int) bgDelta);
+            bgDeltaDisplay += " mg/dl";
+
+            mBgDelta.setText(bgDeltaDisplay);
 //            mTrend.setText(dataMap.getString("trend"));
             mDirection.setText(dataMap.getString("slopeArrow"));
-//            mTimestamp.setText(dataMap.getString("readingAge"));
-//            mUploaderBattery.setText(dataMap.getInt("battery_int"));
+            mTimestamp.setText(dataMap.getString("readingAge"));
+            mUploaderBattery.setText(dataMap.getInt("battery_int") + "%");
+            mIOB.setText(dataMap.getString("iob"));
         }
     }
 }

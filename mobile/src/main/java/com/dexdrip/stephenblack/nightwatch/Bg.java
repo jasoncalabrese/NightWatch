@@ -44,6 +44,10 @@ public class Bg extends Model {
     @Column(name = "battery")
     public String battery;
 
+    @Expose
+    @Column(name = "iob")
+    public String iob;
+
     public int sgv_int() {
         return Integer.parseInt(sgv);
     }
@@ -89,7 +93,7 @@ public class Bg extends Model {
         if (minutesAgo == 0) {
             return "Now";
         }
-        return minutesAgo + " Minutes ago";
+        return minutesAgo + " mins ago";
     }
 
     public DataMap dataMap() {
@@ -101,6 +105,7 @@ public class Bg extends Model {
         dataMap.putString("slopeArrow", slopeArrow());
         dataMap.putString("readingAge", readingAge());
         dataMap.putInt("battery_int", battery_int());
+        dataMap.putString("iob", iob);
         return dataMap;
     }
 
