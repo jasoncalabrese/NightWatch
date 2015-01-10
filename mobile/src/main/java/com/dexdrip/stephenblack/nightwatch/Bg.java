@@ -48,6 +48,9 @@ public class Bg extends Model {
     @Column(name = "battery")
     public String battery;
 
+    @Expose
+    @Column(name = "iob")
+    public String iob;
 
     public String unitized_string() {
         double value = sgv_double();
@@ -168,6 +171,7 @@ public class Bg extends Model {
         dataMap.putString("battery", battery);
         dataMap.putLong("sgvLevel", sgvLevel(prefs));
         dataMap.putInt("batteryLevel", batteryLevel());
+        dataMap.putString("iob", iob);
 
         dataMap.putDouble("sgvDouble", sgv_double());
         dataMap.putDouble("high", inMgdl(highMark));

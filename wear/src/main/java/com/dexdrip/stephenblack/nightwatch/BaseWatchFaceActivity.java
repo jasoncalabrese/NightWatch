@@ -34,7 +34,7 @@ import lecho.lib.hellocharts.view.PreviewLineChartView;
 public  abstract class BaseWatchFaceActivity extends WatchFaceActivity{
     public final static IntentFilter INTENT_FILTER;
     public static final long[] vibratePattern = {0,400,300,400,300,400};
-    public TextView mTime, mSgv, mDirection, mTimestamp, mUploaderBattery, mDelta;
+    public TextView mTime, mSgv, mDirection, mTimestamp, mIOB, mUploaderBattery, mDelta;
     public RelativeLayout mRelativeLayout;
     public LinearLayout mLinearLayout;
     public final String TIME_FORMAT_DISPLAYED = "h:mm";
@@ -75,6 +75,7 @@ public  abstract class BaseWatchFaceActivity extends WatchFaceActivity{
                 mSgv = (TextView) stub.findViewById(R.id.sgv);
                 mDirection = (TextView) stub.findViewById(R.id.direction);
                 mTimestamp = (TextView) stub.findViewById(R.id.timestamp);
+                mIOB = (TextView) stub.findViewById(R.id.iob);
                 mUploaderBattery = (TextView) stub.findViewById(R.id.uploader_battery);
                 mDelta = (TextView) stub.findViewById(R.id.delta);
                 mRelativeLayout = (RelativeLayout) stub.findViewById(R.id.main_layout);
@@ -143,7 +144,8 @@ public  abstract class BaseWatchFaceActivity extends WatchFaceActivity{
 
                 mSgv.setText(dataMap.getString("sgvString"));
                 mDirection.setText(dataMap.getString("slopeArrow"));
-                mUploaderBattery.setText("Uploader: " + dataMap.getString("battery") + "%");
+                mIOB.setText("IOB: " + dataMap.getString("iob"));
+                mUploaderBattery.setText("U: " + dataMap.getString("battery") + "%");
                 mDelta.setText(dataMap.getString("delta"));
 
                 if (chart != null) {
